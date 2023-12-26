@@ -1,0 +1,29 @@
+import React from "react"
+import { StyleSheet, Text, View, Button } from 'react-native'
+
+export default function ProfileScreen({ Navigation }) {
+    return (
+        <View style={styles.container}>
+            <Text>This is profile</Text>
+            {/* <Button
+                color="black"
+                title='Click'
+                onPress={() => Navigation.navigate('home')}
+            /> */}
+        </View>
+    )
+}
+
+
+const styles = StyleSheet.create({
+    container: {
+        marginTop: 10,
+        flex: 1,
+        backgroundColor: 'pink',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    title: {
+        color: 'red',
+    },
+})
