@@ -1,3 +1,4 @@
+import { createStackNavigator } from '@react-navigation/stack';
 import * as React from "react"
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -12,13 +13,41 @@ const home = 'Home'
 const settings = 'Settings'
 const profile = 'Profile'
 
+const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
+
+
+// here will be  the additional stacks inside the home screen and same thing for other screens
+const HomeStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name={home} component={HomeScreen} options={{ headerShown: true }} />
+        </Stack.Navigator>
+    )
+}
+
+const ProfileStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name={profile} component={ProfileScreen} options={{ headerShown: true }} />
+        </Stack.Navigator>
+    )
+}
+
+const SettingStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name={settings} component={SettingScreen} options={{ headerShown: true }} />
+        </Stack.Navigator>
+    )
+}
 
 export default function MainContainer() {
     return (
         <NavigationContainer>
             <Tab.Navigator initialRouteName={home}
                 screenOptions={({ route }) => ({
+                    headerShown: false,
                     tabBarIcon: ({ focused, color, size }) => {
                         let iconName
                         let rn = route.name
@@ -46,10 +75,9 @@ export default function MainContainer() {
                 })
                 }
             >
-
-                <Tab.Screen name={home} component={HomeScreen} />
-                <Tab.Screen name={profile} component={ProfileScreen} />
-                <Tab.Screen name={settings} component={SettingScreen} />
+                <Tab.Screen name={home} component={HomeStack} />
+                <Tab.Screen name={profile} component={ProfileStack} />
+                <Tab.Screen name={settings} component={SettingStack} />
 
             </Tab.Navigator>
         </NavigationContainer>
