@@ -21,7 +21,7 @@ const Tab = createBottomTabNavigator()
 const HomeStack = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name={home} component={HomeScreen} options={{ headerShown: true }} />
+            <Stack.Screen name={home} component={HomeScreen} h />
         </Stack.Navigator>
     )
 }
@@ -60,10 +60,10 @@ export default function MainContainer() {
                             iconName = focused ? 'person' : 'person-outline'
                         }
 
-                        return < Ionicons name={iconName} size={size} color={color} />
+                        return < Ionicons name={iconName} size={size} color={color} accessibilityLabel='' />
                     },
 
-                    tabBarActiveTintColor: 'tomato',
+                    tabBarActiveTintColor: 'grey',
                     tabBarInactiveTintColor: 'grey',
                     tabBarStyle: [
                         {
@@ -75,7 +75,7 @@ export default function MainContainer() {
                 })
                 }
             >
-                <Tab.Screen name={home} component={HomeStack} />
+                <Tab.Screen name={home} component={HomeStack} options={{ headerShown: false }} />
                 <Tab.Screen name={profile} component={ProfileStack} />
                 <Tab.Screen name={settings} component={SettingStack} />
 
@@ -84,5 +84,3 @@ export default function MainContainer() {
 
     )
 }
-
-
