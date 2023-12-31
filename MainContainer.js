@@ -9,6 +9,7 @@ import ProfileScreen from './screens/profile'
 import SettingScreen from './screens/settings'
 
 
+
 const home = 'Home'
 const settings = 'Settings'
 const profile = 'Profile'
@@ -29,9 +30,10 @@ const HomeStack = () => {
 const ProfileStack = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name={profile} component={ProfileScreen} options={{ headerShown: true }} />
+          <Stack.Screen name={profile} component={ProfileScreen} options={{ headerShown: true }} />
+          {/* <Stack.Screen name="PersonalInfo" component={PersonalInfoScreen} options={{ title: 'Personal Info' }} /> */}
         </Stack.Navigator>
-    )
+      );
 }
 
 const SettingStack = () => {
