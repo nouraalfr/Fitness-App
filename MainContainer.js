@@ -7,7 +7,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import HomeScreen from './screens/home'
 import ProfileScreen from './screens/profile'
 import SettingScreen from './screens/settings'
-
+import AbsScreen from '../MobileProject/screens/Abs';
+import ChestScreen from '../MobileProject/screens/Chest'
+import LowerScreen from './screens/Lower';
 
 
 const home = 'Home'
@@ -20,20 +22,25 @@ const Tab = createBottomTabNavigator()
 
 // here will be  the additional stacks inside the home screen and same thing for other screens
 const HomeStack = () => {
+
     return (
+
         <Stack.Navigator>
-            <Stack.Screen name={home} component={HomeScreen} h />
+            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Abs Workout" component={AbsScreen} />
+            <Stack.Screen name="Chest Workout" component={ChestScreen} />
+            <Stack.Screen name="Lower Workout" component={LowerScreen} />
         </Stack.Navigator>
+
     )
 }
 
 const ProfileStack = () => {
     return (
         <Stack.Navigator>
-          <Stack.Screen name={profile} component={ProfileScreen} options={{ headerShown: true }} />
-          {/* <Stack.Screen name="PersonalInfo" component={PersonalInfoScreen} options={{ title: 'Personal Info' }} /> */}
+            <Stack.Screen name={profile} component={ProfileScreen} options={{ headerShown: true }} />
         </Stack.Navigator>
-      );
+    )
 }
 
 const SettingStack = () => {
@@ -65,7 +72,7 @@ export default function MainContainer() {
                         return < Ionicons name={iconName} size={size} color={color} accessibilityLabel='' />
                     },
 
-                    tabBarActiveTintColor: 'grey',
+                    tabBarActiveTintColor: 'tomato',
                     tabBarInactiveTintColor: 'grey',
                     tabBarStyle: [
                         {
@@ -83,6 +90,5 @@ export default function MainContainer() {
 
             </Tab.Navigator>
         </NavigationContainer>
-
     )
 }
