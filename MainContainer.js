@@ -7,9 +7,21 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import HomeScreen from './screens/home'
 import ProfileScreen from './screens/profile'
 import SettingScreen from './screens/settings'
-import AbsScreen from '../MobileProject/screens/Abs';
-import ChestScreen from '../MobileProject/screens/Chest'
-import LowerScreen from './screens/Lower';
+import mainAbs from './abs/mainAbs'
+import BlankPage from './abs/BlankPgae'
+import CrunchPage from './abs/CrunchPage'
+import MountainPage from './abs/MountainPage'
+import chestMain from './chest/chestMain'
+import pushPage from './chest/pushPage'
+import benchPage from './chest/benchPage'
+import lowerMain from './lower/lowerMain'
+import squatPage from './lower/squatPage'
+import bulgarianPage from './lower/bulgarianPage'
+import deadliftPage from './lower/deadliftPage'
+import bridgPage from './lower/bridgPage'
+import abductionPage from './lower/abductionPage'
+
+
 
 
 const home = 'Home'
@@ -22,25 +34,36 @@ const Tab = createBottomTabNavigator()
 
 // here will be  the additional stacks inside the home screen and same thing for other screens
 const HomeStack = () => {
-
     return (
-
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Abs Workout" component={AbsScreen} />
-            <Stack.Screen name="Chest Workout" component={ChestScreen} />
-            <Stack.Screen name="Lower Workout" component={LowerScreen} />
+            <Stack.Screen name={home} component={HomeScreen} h />
+            <Stack.Screen name="mainAbs" component={mainAbs} options={{ title: 'Abs Workout' }} />
+            <Stack.Screen name="BlankPage" component={BlankPage} options={{ title: 'Blank Workout' }} />
+            <Stack.Screen name="CrunchPage" component={CrunchPage} options={{ title: 'Crunches Workout' }} />
+            <Stack.Screen name="MountainPage" component={MountainPage} options={{ title: 'Mountain Climbers Workout' }} />  
+
+            <Stack.Screen name="chestMain" component={chestMain} options={{ title: 'Chest Workout' }} />
+            <Stack.Screen name="pushPage" component={pushPage} options={{ title: 'Push Ups Workout' }} />
+            <Stack.Screen name="benchPage" component={benchPage} options={{ title: 'Barbell Bench Press Workout' }} />
+
+            <Stack.Screen name="lowerMain" component={lowerMain} options={{ title: 'Lower Body Workout' }} />
+            <Stack.Screen name="squatPage" component={squatPage} options={{ title: 'Squat Workout' }} />
+            <Stack.Screen name="bulgarianPage" component={bulgarianPage} options={{ title: 'bulgarian Split Workout' }} />
+            <Stack.Screen name="deadliftPage" component={deadliftPage} options={{ title: 'Deadlift Workout' }} />
+            <Stack.Screen name="bridgPage" component={bridgPage} options={{ title: 'Hip Bridge Workout' }} />
+            <Stack.Screen name="abductionPage" component={abductionPage} options={{ title: 'Hip Abduction Workout' }} />
         </Stack.Navigator>
 
+        
     )
 }
 
 const ProfileStack = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name={profile} component={ProfileScreen} options={{ headerShown: true }} />
+          <Stack.Screen name={profile} component={ProfileScreen} options={{ headerShown: true }} />
         </Stack.Navigator>
-    )
+      );
 }
 
 const SettingStack = () => {
@@ -72,7 +95,7 @@ export default function MainContainer() {
                         return < Ionicons name={iconName} size={size} color={color} accessibilityLabel='' />
                     },
 
-                    tabBarActiveTintColor: 'tomato',
+                    tabBarActiveTintColor: 'grey',
                     tabBarInactiveTintColor: 'grey',
                     tabBarStyle: [
                         {
@@ -90,5 +113,6 @@ export default function MainContainer() {
 
             </Tab.Navigator>
         </NavigationContainer>
+
     )
 }
