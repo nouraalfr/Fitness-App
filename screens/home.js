@@ -1,13 +1,19 @@
 import React from "react"
-import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity, } from 'react-native'
+import { StyleSheet, Text, View, Button, Image, Dimensions, TouchableOpacity} from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 
 
 
-const Abs = (navigation) => {
+
+
+const Abs = () => {
+
+   const navigation = useNavigation();
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('Abs Workout')}>
+
+        <TouchableOpacity onPress={() => navigation.navigate('mainAbs')}>
             <View style={[styles.cardContainer, { backgroundColor: '#fff2ff' }]}>
-                <Image style={styles.image} source={require("/Users/nouraalfraidi/Desktop/Fitness/MobileProject/assets/w1.png")} />
+                <Image style={styles.image} source={require("C:\\Users\\DELL\\OneDrive\\Documents\\REACT-NATIVE\\Fitness-App\\assets\\w1.png")} />
                 <Text style={[styles.title, { color: '#db7093' }]} color='pink'>  Abs Workout</Text>
             </View>
         </TouchableOpacity>
@@ -16,11 +22,13 @@ const Abs = (navigation) => {
     )
 }
 
-const Chest = (navigation) => {
+const Chest = () => {
+
+    const navigation = useNavigation();
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('Chest Workout')}>
+        <TouchableOpacity onPress={() => navigation.navigate('chestMain')}>
             <View style={[styles.cardContainer, { backgroundColor: "#eaf7ff" }]}>
-                <Image style={[styles.image, ,]} source={require("/Users/nouraalfraidi/Desktop/Fitness/MobileProject/assets/w22.png")} />
+                <Image style={[styles.image, ,]} source={require("C:\\Users\\DELL\\OneDrive\\Documents\\REACT-NATIVE\\Fitness-App\\assets\\w22.png")} />
                 <Text style={[styles.title, { color: '#274ea9' }]}>Chest Workout</Text>
             </View>
         </TouchableOpacity>
@@ -29,11 +37,12 @@ const Chest = (navigation) => {
     )
 }
 
-const Lower = (navigation) => {
+const Lower = () => {
+    const navigation = useNavigation();
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('Lower Workout')}>
+        <TouchableOpacity onPress={() => navigation.navigate('lowerMain')}>
             <View style={[styles.cardContainer, { backgroundColor: "#ffe3e0" }]}>
-                <Image style={styles.image} source={require("/Users/nouraalfraidi/Desktop/Fitness/MobileProject/assets/w3.jpg")} />
+                <Image style={styles.image} source={require("C:\\Users\\DELL\\OneDrive\\Documents\\REACT-NATIVE\\Fitness-App\\assets\\w3.jpg")} />
                 <Text style={[styles.title, { color: '#f97765' }]}>Lower Workout</Text>
             </View>
         </TouchableOpacity>
@@ -42,19 +51,17 @@ const Lower = (navigation) => {
     )
 }
 
-function HomeScreen({ navigation }) {
+export default function HomeScreen({ Navigation }) {
     return (
         <View style={styles.container}>
-            {Abs(navigation)}
-            {Chest(navigation)}
-            {Lower(navigation)}
+
+            {Abs()}
+            {Chest()}
+            {Lower()}
+
         </View>
     )
 }
-
-
-
-
 
 const deviceWidth = Math.round(Dimensions.get('window').width)
 const styles = StyleSheet.create({
@@ -97,5 +104,3 @@ const styles = StyleSheet.create({
     },
 })
 
-
-export default HomeScreen;
