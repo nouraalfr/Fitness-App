@@ -1,12 +1,16 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import * as React from "react"
+// import * as React from "react"
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+// import {User, onAuthStateChanged} from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth';
 
 import HomeScreen from './screens/home'
 import ProfileScreen from './screens/profile'
 import SettingScreen from './screens/settings'
+import  Login from './screens/Login'
 import mainAbs from './abs/mainAbs'
 import BlankPage from './abs/BlankPgae'
 import CrunchPage from './abs/CrunchPage'
@@ -20,6 +24,8 @@ import bulgarianPage from './lower/bulgarianPage'
 import deadliftPage from './lower/deadliftPage'
 import bridgPage from './lower/bridgPage'
 import abductionPage from './lower/abductionPage'
+import { FIREBASE_AUTH } from './firebaseConfig';
+
 
 
 
@@ -74,10 +80,9 @@ const SettingStack = () => {
     )
 }
 
-export default function MainContainer() {
-    return (
-        <NavigationContainer>
-            <Tab.Navigator initialRouteName={home}
+const mainScreen = ()=> {
+    return(
+        <Tab.Navigator initialRouteName={home}
                 screenOptions={({ route }) => ({
                     headerShown: false,
                     tabBarIcon: ({ focused, color, size }) => {
@@ -112,6 +117,32 @@ export default function MainContainer() {
                 <Tab.Screen name={settings} component={SettingStack} />
 
             </Tab.Navigator>
+
+    )
+}
+
+export default function MainContainer() {
+
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, (user) => {
+            setUser(user);
+        });
+    
+        return () => unsubscribe();
+    }, []);
+
+
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName='Login'>
+                {user? (
+                    <Stack.Screen name="mainScreen" component={mainScreen} options={{headerShown: false}}  />
+                ) : (
+                    <Stack.Screen name="Login" component={Login} options={{headerShown: false}}  />)}
+
+            </Stack.Navigator>
+
         </NavigationContainer>
 
     )
