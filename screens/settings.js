@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Share  } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Share } from 'react-native';
+import { signOut } from 'firebase/auth';
+import { FIREBASE_AUTH } from '../firebaseConfig';
 
 export default function SettingScreen({ navigation }) {
   const handleShare = async () => {
@@ -21,16 +23,26 @@ export default function SettingScreen({ navigation }) {
     }
   };
 
+  const logout = async () => {
+    try {
+      await signOut(FIREBASE_AUTH);
+      // Add any additional code to handle the logout process
+    } catch (error) {
+      console.log(error);
+      alert('Logout failed: ' + error.message);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      
       <View style={styles.card}>
-        <Text style={styles.title}>LogOut</Text>
+        <TouchableOpacity onPress={logout}>
+          <Text style={styles.title}>Logout</Text>
+        </TouchableOpacity>
       </View>
-      
-      
+
       <TouchableOpacity style={[styles.card, styles.button]} onPress={handleShare}>
-        <Text style={styles.buttonText}>Share with frinds</Text>
+        <Text style={styles.buttonText}>Share with friends</Text>
       </TouchableOpacity>
 
       <View style={styles.card}>
@@ -40,8 +52,6 @@ export default function SettingScreen({ navigation }) {
       <View style={styles.card}>
         <Text style={styles.title}>Help</Text>
       </View>
-
-
     </View>
   );
 }
@@ -56,14 +66,14 @@ const styles = StyleSheet.create({
     fontSize: 21,
     marginLeft: 10,
     marginTop: 20,
-    fontWeight: 'bold' 
+    fontWeight: 'bold',
   },
   card: {
     height: 70,
     width: 400,
     marginTop: 10,
     marginLeft: 5,
-    backgroundColor: "#ffe3e0",
+    backgroundColor: '#ffe3e0',
     borderRadius: 10,
   },
   description: {
@@ -80,6 +90,6 @@ const styles = StyleSheet.create({
     fontSize: 21,
     marginLeft: 10,
     marginTop: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
 });
